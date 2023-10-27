@@ -2,6 +2,8 @@ import Debug from './debug.js';
 
 window.addEventListener("load", function() { Debug.log("hey there, welcome !");
 
+	const enable_console_logs = false;
+
 	// Global Fetch Variables
 	var token;
 	const shopList = new Map();
@@ -146,9 +148,18 @@ window.addEventListener("load", function() { Debug.log("hey there, welcome !");
 		
 		// Get Orders
 		await get_orders(token, input__shop.value, input__start_date.value, input__end_date.value)
+			.then((orders_) => {
+				// Abort if empty
+				if (orders_.length == 0) {
+					main__outer.querySelector(".content").remove();
+					return Promise.reject('user cancelled');
+				}
+				return orders_;
+			})
 			.then(async(orders_) => {
 				orders = [...orders_];
-				console.log("orders", orders);
+				if (enable_console_logs)
+					console.log("orders", orders);
 
 				let i, j, k;
 				// Get each order details
@@ -156,7 +167,8 @@ window.addEventListener("load", function() { Debug.log("hey there, welcome !");
 					await get_order_details(token, orders[i].id_vente)
 						.then((details) => {
 							order_details.set(orders[i].id_vente, details);
-							console.log("order details", details);
+							if (enable_console_logs)
+								console.log("order details", details);
 						})
 						.then(() => {
 							// notify all order details parsed
@@ -171,7 +183,8 @@ window.addEventListener("load", function() { Debug.log("hey there, welcome !");
 					await get_order_lines(token, orders[j].id_vente)
 						.then((lines) => {
 							order_lines.set(orders[j].id_vente, lines);
-							console.log("order lines", lines);
+							if (enable_console_logs)
+								console.log("order lines", lines);
 							return lines;
 						})
 						.then(async(lines) => {
@@ -187,7 +200,8 @@ window.addEventListener("load", function() { Debug.log("hey there, welcome !");
 										.catch((error) => { console.log(error); });
 								}
 							}
-							console.log("product prices", product_prices);
+							if (enable_console_logs)
+								console.log("product prices", product_prices);
 						})
 						.then(() => {
 							// notify all order lines parsed
@@ -213,7 +227,8 @@ window.addEventListener("load", function() { Debug.log("hey there, welcome !");
 			order_lines_loaded = true;
 		if (!order_details_loaded || !order_lines_loaded)
 			return;
-		console.log("processing update");
+		if (enable_console_logs)
+			console.log("processing update");
 
 		// Sort orders by common date
 		let orders_by_common_date = new Map();
@@ -224,7 +239,8 @@ window.addEventListener("load", function() { Debug.log("hey there, welcome !");
 			else
 				orders_by_common_date.get(date).push(order.id_vente);
 		});
-		console.log("orders by common date", orders_by_common_date);
+		if (enable_console_logs)
+			console.log("orders by common date", orders_by_common_date);
 
 		// Reset content DOM
 		let previous_content = main__outer.querySelector(".content");
@@ -252,32 +268,34 @@ window.addEventListener("load", function() { Debug.log("hey there, welcome !");
 				`;
 				for (i = 0 ; i < ids.length; i++) {
 					id = ids[i];
+					const { date_livraison, tiers_nom, total_ttc_net } = order_details.get(id);
 					domstring += `
 					<div class="content">
 						<div class="header">
 							<div class="summary">
 								<p class="id pinned">Id: ${id}</p>
-								<p class="date pinned">du ${order_details.get(id).date_livraison}</p>
-								<p class="from pinned">de ${order_details.get(id).tiers_nom}</p>
-								<p class="total pinned">${order_details.get(id).total_ttc_net}€</p>
+								<p class="date pinned">du ${date_livraison}</p>
+								<p class="from pinned">de ${tiers_nom}</p>
+								<p class="total pinned">${total_ttc_net}€</p>
 							</div>
 							<p class="details">V détails V</p>
 						</div>
 						<div class="details" style="max-height: 0">
 					`;
 					for (j = 1; j < order_lines.get(id).length ; j++) {
+						const { quantite, libelle_ligne, ordre_ligne, id_produit} = order_lines.get(id)[j];
 						domstring += `
 							<div class="details-row">
 								<div class="description">
-									<p class="quantity pinned">${order_lines.get(id)[j].quantite}</p>
+									<p class="quantity pinned">${quantite}</p>
 									<p>*</p>
-									<p class="name pinned">${order_lines.get(id)[j].libelle_ligne}</p>
+									<p class="name pinned">${libelle_ligne}</p>
 								</div>
-								<p class="unit-price pinned" ${order_lines.get(id)[j].ordre_ligne > 1 ? 'style="visibility: hidden"' : ""}>
-									${order_lines.get(id)[j].ordre_ligne <= 1 ? "p.u. " + product_prices.get(order_lines.get(id)[j].id_produit) + "€" : ""}
+								<p class="unit-price pinned" ${ordre_ligne > 1 ? 'style="visibility: hidden"' : ""}>
+									${ordre_ligne <= 1 ? "p.u. " + product_prices.get(id_produit) + "€" : ""}
 								</p>
 								<p class="total-price pinned">
-									${order_lines.get(id)[j].ordre_ligne <= 1 ? "ttc " + order_lines.get(id)[j].quantite * product_prices.get(order_lines.get(id)[j].id_produit) + "€" : "inclus"}
+									${ordre_ligne <= 1 ? "ttc " + quantite * product_prices.get(id_produit) + "€" : "inclus"}
 								</p>
 							</div>
 						`;
