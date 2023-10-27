@@ -99,16 +99,16 @@ export default class Debug {
 			// Insert debug feature to DOM
 			document.querySelector("body").insertAdjacentHTML('beforeend', `
 				<div id="debug-toggle-state-button">
-					<img class="outer" src="img/toggle_outer.png"/>
-					<img class="inner-on" src="img/toggle_inner_on.png"/>
-					<img class="inner-off" src="img/toggle_inner_off.png"/>
+					<img class="outer" alt="debug toggle outer" src="img/toggle_outer.png"/>
+					<img class="inner-on" alt="debug toggle inner on" src="img/toggle_inner_on.png"/>
+					<img class="inner-off" alt="debug toggle inner off" src="img/toggle_inner_off.png"/>
 					<div class="info-bubble"><p>Debug panel</p></div>
 					</div>
 				</div>
 				<div id="debug">
 					<div class="header">
 						<div class="summary">
-							<img class="clear-button" src="img/clear_icon.png"/>
+							<img class="clear-button" alt="debug clear button" src="img/clear_icon.png"/>
 							<p class="logs">1 log</p>
 							<p class="separator s1">,</p>
 							<p class="warnings">1 warning</p>
@@ -117,7 +117,7 @@ export default class Debug {
 							<p class="separator s3">since</p>
 							<p class="time">${hh}:${ii}:${ss}</p>
 						</div>
-						<img class="slider-icon" src="img/slider_icon.png"/>
+						<img class="slider-icon" alt="debug slider" src="img/slider_icon.png"/>
 					</div>
 					<div class="content">
 						<div class="row ${type}">
