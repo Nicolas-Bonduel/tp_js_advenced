@@ -1,0 +1,563 @@
+
+/* --------------------------------------- Variables --------------------------------------- */
+/*:root {
+	--header-height: 7vh;
+	--main-height: 80vh;
+}*/
+
+
+
+
+/* --------------------------------------- Body --------------------------------------- */
+
+body {
+	margin: 0;
+	background-color: #1a1a20;
+}
+
+
+/* --------------------------------------- Header --------------------------------------- */
+header {
+	position: relative;
+	width: 100vw;
+	height: 7vh;
+	display:flex;
+	align-items: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #2a2a36;
+}
+
+header > .synapsy-logo {
+	margin-left: 10px;
+	height: 5vh;
+}
+
+
+header > .get-token-btn {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	
+	height: auto;
+	font-size: 2.5vh;
+	color: white;
+	font-weight: bold;
+	background-color: green;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 20px;
+	transition: color ease .3s, background-color ease .3s;
+}
+header > .get-token-btn:hover {
+	color: green;
+	background-color: white;
+}
+
+header > .loading-gif { display: none;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	
+	height: 40px;
+}
+
+header > .ready-text { display: none;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	
+	font-size: 2.5vh;
+	color: white;
+	border: 3px solid green;
+	border-radius: 20px;
+	padding: 10px 20px;
+}
+header > .ready-text:hover {
+	border-color: red;
+	
+}
+
+
+
+
+
+
+
+
+/* --------------------------------------- Main --------------------------------------- */
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+main > .get-token-arrow {
+	height: 10vh;
+}
+
+main > .outer {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 80vw;
+	max-height: 75vh;
+	background-color: #22222f;
+	font-size: 3.5vw;
+	color: white;
+	white-space: nowrap;
+}
+@media (min-width: 600px) {
+main > .outer {
+	font-size: 2.5vw;
+}}
+@media (min-width: 1200px) {
+main > .outer {
+	font-size: 1.3vw;
+}}
+main > .outer.empty {
+	height: 20vh;
+}
+
+main > .outer > .get-token-text {
+	position:absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin-top: 0;
+	font-size: 4.6vw;
+	color: green;
+}
+@media (min-width: 600px) {
+main > .outer > .get-token-text {
+	font-size: 3.3vw;
+}}
+@media (min-width: 1200px) {
+main > .outer > .get-token-text {
+	font-size: 1.7vw;
+}}
+
+main > .outer > .intro { visibility: hidden;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+main > .outer > .intro > .disclaimer {
+	font-size: 4.6vw;
+	margin-top: 5%;
+}
+@media (min-width: 600px) {
+main > .outer > .intro > .disclaimer {
+	font-size: 3.3vw;
+	margin-top: 2%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .intro > .disclaimer {
+	font-size: 1.7vw;
+	margin-top: 1%;
+}}
+
+main > .outer > .intro > .get-shops-btn {
+	font-size: 2.6vw;
+	color: white;
+	font-weight: bold;
+	background-color: green;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 20px;
+	transition: color ease .3s, background-color ease .3s;
+}
+@media (min-width: 600px) {
+	main > .outer > .intro > .get-shops-btn {
+		font-size: 1.9vw;
+}}
+@media (min-width: 1200px) {
+	main > .outer > .intro > .get-shops-btn {
+		font-size: 1vw;
+}}
+main > .outer > .intro > .get-shops-btn:hover {
+	color: green;
+	background-color: white;
+}
+
+.pinned {
+	opacity: .8;
+	border: 1px solid grey;
+    background-color: rgba(175, 184, 193, 0.2);
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+    font-style: italic;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.pinned-header {
+	background-color: rgba(74, 78, 82, 0.2);
+}
+
+/* --------------------------------------- Main Header --------------------------------------- */
+
+main > .outer > .header {
+	display: flex;
+	flex-direction: column;
+	background-color: #2a2a36;
+	padding-bottom: 3%;
+}
+@media (min-width: 600px) {
+main > .outer > .header {
+	padding-bottom: 2%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .header {
+	padding-bottom: 1%;
+}}
+
+main > .outer > .header > .shop-select {
+	margin-top: 2%;
+	align-self: center;
+	font-size: 5.5vw;
+	margin-bottom: 2%;
+	background-color: #223;
+	border-color: #444;
+	color: #ccc;
+	padding: 2% 4%;
+	border-radius: 20px;
+}
+@media (min-width: 600px) {
+main > .outer > .header > .shop-select {
+	font-size: 3.9vw;
+	margin-bottom: 1.5%;
+	padding: 1% 2%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .header > .shop-select {
+	font-size: 2vw;
+	margin-bottom: 1%;
+	margin-top: 1%;
+}}
+
+main > .outer > .header > .calendars {
+	width: 100%;
+	display: flex;
+	margin-bottom: 3%;
+}
+@media (min-width: 600px) {
+main > .outer > .header > .calendars {
+	margin-bottom: 2%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .header > .calendars {
+	margin-bottom: 1%;
+}}
+
+main > .outer > .header > .calendars > .start-text {
+	margin-left: 5%;
+	margin-right: 10px;
+}
+@media (min-width: 600px) {
+main > .outer > .header > .calendars > .start-text {
+	margin-left: 10%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .header > .calendars > .start-text {
+	margin-left: auto;
+}}
+
+main > .outer > .header > .calendars > .start-date {
+	margin-left: 10px;
+	margin-right: auto;
+	font-size: 2.5vw;
+}
+@media (min-width: 600px) {
+main > .outer > .header > .calendars > .start-date {
+	font-size: 1.8vw;
+}}
+@media (min-width: 1200px) {
+main > .outer > .header > .calendars > .start-date {
+	font-size: .9vw;
+	margin-right: 5%;
+}}
+
+main > .outer > .header > .calendars > .end-text {
+	margin-left: auto;
+	margin-right: 10px;
+}
+@media (min-width: 1200px) {
+main > .outer > .header > .calendars > .end-text {
+	margin-left: 5%;
+}}
+
+main > .outer > .header > .calendars > .end-date {
+	margin-left: 10px;
+	margin-right: 5%;
+	font-size: 2.5vw;
+}
+@media (min-width: 600px) {
+main > .outer > .header > .calendars > .end-date {
+	font-size: 1.8vw;
+	margin-right: 10%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .header > .calendars > .end-date {
+	font-size: .9vw;
+	margin-right: auto;
+}}
+
+main > .outer > .header > .calendars > input {
+	background-color: #3d3d46;
+	border: 1px solid #3d3d46;
+	border-radius: 10px;
+	color: white;
+}
+
+main > .outer > .header > .totals {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+@media (min-width: 1200px) {
+main > .outer > .header > .totals {
+	margin-top: -2%;
+}}
+
+main > .outer > .header > .totals > .orders-total {
+	margin-left: 5%;
+}
+
+main > .outer > .header > .totals > .payments-total {
+	margin-right: 5%;
+}
+
+main > .outer > .header > .content{
+	background-color: green;
+}
+
+/* --------------------------------------- Main Content --------------------------------------- */
+
+main > .outer > .content {
+	overflow-y: scroll;
+}
+
+main > .outer > .content > .loader {
+	position: relative;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+main > .outer > .content > .content-row {
+	display: flex;
+	flex-direction: column;
+	box-shadow: 1px 1px 5px rgb(80, 80, 80);
+}
+
+main > .outer > .content > .content-row > .header {
+	display: flex;
+	flex-direction: column;
+	box-shadow: 1px 1px 5px rgb(162, 162, 162);
+	z-index: 1;
+	background-color: #333541;
+}
+
+main > .outer > .content > .content-row > .header > .date {
+	margin-top: 2%;
+	align-self: center;
+	font-size: 4.6vw;
+	margin-bottom: 0;
+}
+@media (min-width: 600px) {
+main > .outer > .content > .content-row > .header > .date {
+	font-size: 3.3vw;
+	margin-top: 1%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .content > .content-row > .header > .date {
+	font-size: 1.3vw;
+	margin-top: .5%;
+}}
+
+main > .outer > .content > .content-row > .header > .totals {
+	display: flex;
+}
+@media (min-width: 1200px) {
+main > .outer > .content > .content-row > .header > .totals {
+	margin-top: -2%;
+}}
+
+main > .outer > .content > .content-row > .header > .totals > .orders-total {
+	margin-left: 3%;
+	margin-right: auto;
+	margin-top: 0;
+	margin-bottom: 2%;
+}
+@media (min-width: 600px) {
+main > .outer > .content > .content-row > .header > .totals > .orders-total {
+	margin-bottom: 1%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .content > .content-row > .header > .totals > .orders-total {
+	margin-bottom: .5%;
+}}
+
+main > .outer > .content > .content-row > .header > .totals > .payments-total {
+	margin-left: auto;
+	margin-right: 3%;
+	margin-top: 0;
+	margin-bottom: 2%;
+}
+@media (min-width: 600px) {
+main > .outer > .content > .content-row > .header > .totals > .payments-total {
+	margin-bottom: 1%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .content > .content-row > .header > .totals > .payments-total {
+	margin-bottom: .5%;
+}}
+
+main > .outer > .content > .content-row > .content {
+	display: flex;
+	flex-direction: column;
+	background-color: #272735;
+	width: 90%;
+	align-self: flex-end;
+	box-shadow: 10px 1px 5px rgb(162, 162, 162);
+	padding-bottom: 2%;
+}
+@media (min-width: 600px) {
+main > .outer > .content > .content-row > .content {
+	padding-bottom: 1%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .content > .content-row > .content {
+	padding-bottom: .5%;
+}}
+
+main > .outer > .content > .content-row > .content > .header {
+	display: flex;
+	flex-direction: column;
+	margin-top: 2%;
+}
+@media (min-width: 600px) {
+main > .outer > .content > .content-row > .content > .header {
+	margin-bottom: 1%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .content > .content-row > .content > .header {
+	margin-bottom: .5%;
+}}
+
+main > .outer > .content > .content-row > .content > .header > .summary {
+	display: flex;
+	justify-content: space-around;
+}
+
+main > .outer > .content > .content-row > .content > .header > .summary > .id {
+
+}
+
+main > .outer > .content > .content-row > .content > .header > .summary > .date {
+
+}
+
+main > .outer > .content > .content-row > .content > .header > .summary > .from {
+
+}
+
+main > .outer > .content > .content-row > .content > .header > .summary > .total {
+
+}
+
+main > .outer > .content > .content-row > .content > .header > .details {
+	align-self: center;
+	margin-top: 2%;
+	margin-bottom: 1%;
+}
+@media (min-width: 600px) {
+main > .outer > .content > .content-row > .content > .header > .details {
+	margin-top: 1%;
+	margin-bottom: .5%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .content > .content-row > .content > .header > .details {
+	margin-top: .5%;
+	margin-bottom: .2%;
+}}
+main > .outer > .content > .content-row > .content > .header > .details:hover {
+	cursor: pointer;
+}
+
+main > .outer > .content > .content-row > .content > .details {
+	display: flex;
+	flex-direction: column;
+	max-height: 1000vh;
+	transition: max-height ease 1s;
+	overflow: hidden;
+}
+
+main > .outer > .content > .content-row > .content > .details > .details-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	row-gap: 10px;
+	margin-bottom: 2%;
+}
+@media (min-width: 600px) {
+main > .outer > .content > .content-row > .content > .details > .details-row {
+	margin-bottom: 1%;
+}}
+@media (min-width: 1200px) {
+main > .outer > .content > .content-row > .content > .details > .details-row {
+	margin-bottom: .5%;
+}}
+
+main > .outer > .content > .content-row > .content > .details > .details-row > .description {
+	display: flex;
+	margin-left: 10%;
+	margin-right: auto;
+}
+
+main > .outer > .content > .content-row > .content > .details > .details-row > .description > .quantity {
+
+}
+
+main > .outer > .content > .content-row > .content > .details > .details-row > .description > p {
+	margin-top: 0;
+	margin-bottom: 0;
+	max-width: 50vw;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+main > .outer > .content > .content-row > .content > .details > .details-row > .description > .name {
+
+}
+
+main > .outer > .content > .content-row > .content > .details > .details-row > .unit-price {
+	margin-left: auto;
+	margin-right: 5%;
+}
+
+main > .outer > .content > .content-row > .content > .details > .details-row > .total-price {
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+
+
+
+
+/*
+
+    --old-nav-bg: #1f1f2a;
+    --lighter-nav-bg: #3d3d46;
+    --nav-bg: #17171f;
+
+*/
